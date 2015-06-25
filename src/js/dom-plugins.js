@@ -1,20 +1,20 @@
 /*===========================
-Add .swiper plugin from Dom libraries
+Add .cggswiper plugin from Dom libraries
 ===========================*/
-var swiperDomPlugins = ['jQuery', 'Zepto', 'Dom7'];
+var cggswiperDomPlugins = ['jQuery', 'Zepto', 'Dom7'];
 function addLibraryPlugin(lib) {
-    lib.fn.swiper = function (params) {
+    lib.fn.cggswiper = function (params) {
         var firstInstance;
         lib(this).each(function () {
-            var s = new Swiper(this, params);
+            var s = new CGGSwiper(this, params);
             if (!firstInstance) firstInstance = s;
         });
         return firstInstance;
     };
 }
-for (var i = 0; i < swiperDomPlugins.length; i++) {
-    if (window[swiperDomPlugins[i]]) {
-        addLibraryPlugin(window[swiperDomPlugins[i]]);
+for (var i = 0; i < cggswiperDomPlugins.length; i++) {
+    if (window[cggswiperDomPlugins[i]]) {
+        addLibraryPlugin(window[cggswiperDomPlugins[i]]);
     }
 }
 // Required DOM Plugins

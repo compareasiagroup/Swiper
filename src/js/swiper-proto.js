@@ -1,7 +1,7 @@
 /*==================================================
     Prototype
 ====================================================*/
-Swiper.prototype = {
+CGGSwiper.prototype = {
     isSafari: (function () {
         var ua = navigator.userAgent.toLowerCase();
         return (ua.indexOf('safari') >= 0 && ua.indexOf('chrome') < 0 && ua.indexOf('android') < 0);

@@ -6,9 +6,9 @@ s.scrollbar = {
         if (!s.params.scrollbar) return;
         var sb = s.scrollbar;
         sb.track = $(s.params.scrollbar);
-        sb.drag = sb.track.find('.swiper-scrollbar-drag');
+        sb.drag = sb.track.find('.cgg-swiper-scrollbar-drag');
         if (sb.drag.length === 0) {
-            sb.drag = $('<div class="swiper-scrollbar-drag"></div>');
+            sb.drag = $('<div class="cgg-swiper-scrollbar-drag"></div>');
             sb.track.append(sb.drag);
         }
         sb.drag[0].style.width = '';

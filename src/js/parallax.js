@@ -5,9 +5,9 @@ function setParallaxTransform(el, progress) {
     el = $(el);
     var p, pX, pY;
     
-    p = el.attr('data-swiper-parallax') || '0';
-    pX = el.attr('data-swiper-parallax-x');
-    pY = el.attr('data-swiper-parallax-y');
+    p = el.attr('data-cggswiper-parallax') || '0';
+    pX = el.attr('data-cggswiper-parallax-x');
+    pY = el.attr('data-cggswiper-parallax-y');
     if (pX || pY) {
         pX = pX || '0';
         pY = pY || '0';
@@ -38,13 +38,13 @@ function setParallaxTransform(el, progress) {
 }   
 s.parallax = {
     setTranslate: function () {
-        s.container.children('[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y]').each(function(){
+        s.container.children('[data-cggswiper-parallax], [data-cggswiper-parallax-x], [data-cggswiper-parallax-y]').each(function(){
             setParallaxTransform(this, s.progress);
             
         });
         s.slides.each(function () {
             var slide = $(this);
-            slide.find('[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y]').each(function () {
+            slide.find('[data-cggswiper-parallax], [data-cggswiper-parallax-x], [data-cggswiper-parallax-y]').each(function () {
                 var progress = Math.min(Math.max(slide[0].progress, -1), 1);
                 setParallaxTransform(this, progress);
             });
@@ -52,9 +52,9 @@ s.parallax = {
     },
     setTransition: function (duration) {
         if (typeof duration === 'undefined') duration = s.params.speed;
-        s.container.find('[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y]').each(function(){
+        s.container.find('[data-cggswiper-parallax], [data-cggswiper-parallax-x], [data-cggswiper-parallax-y]').each(function(){
             var el = $(this);
-            var parallaxDuration = parseInt(el.attr('data-swiper-parallax-duration'), 10) || duration;
+            var parallaxDuration = parseInt(el.attr('data-cggswiper-parallax-duration'), 10) || duration;
             if (duration === 0) parallaxDuration = 0;
             el.transition(parallaxDuration);
         });

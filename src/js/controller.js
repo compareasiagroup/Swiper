@@ -18,12 +18,12 @@ s.controller = {
         }
         if (s.isArray(controlled)) {
             for (var i = 0; i < controlled.length; i++) {
-                if (controlled[i] !== byController && controlled[i] instanceof Swiper) {
+                if (controlled[i] !== byController && controlled[i] instanceof CGGSwiper) {
                     setControlledTranslate(controlled[i]);
                 }
             }
         }
-        else if (controlled instanceof Swiper && byController !== controlled) {
+        else if (controlled instanceof CGGSwiper && byController !== controlled) {
             setControlledTranslate(controlled);
         }
     },
@@ -42,12 +42,12 @@ s.controller = {
         }
         if (s.isArray(controlled)) {
             for (i = 0; i < controlled.length; i++) {
-                if (controlled[i] !== byController && controlled[i] instanceof Swiper) {
+                if (controlled[i] !== byController && controlled[i] instanceof CGGSwiper) {
                     setControlledTransition(controlled[i]);
                 }
             }
         }
-        else if (controlled instanceof Swiper && byController !== controlled) {
+        else if (controlled instanceof CGGSwiper && byController !== controlled) {
             setControlledTransition(controlled);
         }
     }

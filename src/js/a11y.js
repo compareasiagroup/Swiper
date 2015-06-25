@@ -46,7 +46,7 @@ s.a11y = {
         }
     },
 
-    liveRegion: $('<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>'),
+    liveRegion: $('<span class="cgg-swiper-notification" aria-live="assertive" aria-atomic="true"></span>'),
 
     notify: function (message) {
         var notification = s.a11y.liveRegion;

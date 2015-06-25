@@ -10,15 +10,15 @@
  * 
  * Licensed under MIT
  * 
- * Released on: June 14, 2015
+ * Released on: June 25, 2015
  */
 (function () {
     'use strict';
-    /*===========================
-    Swiper
-    ===========================*/
-    var Swiper = function (container, params) {
-        if (!(this instanceof Swiper)) return new Swiper(container, params);
+        /*===========================
+        CGGSwiper
+        ===========================*/
+        var CGGSwiper = function (container, params) {
+            if (!(this instanceof CGGSwiper)) return new CGGSwiper(container, params);
 
         var defaults = {
             direction: 'horizontal',
@@ -128,19 +128,19 @@
             allowSwipeToNext: true,
             swipeHandler: null, //'.swipe-handler',
             noSwiping: true,
-            noSwipingClass: 'swiper-no-swiping',
+            noSwipingClass: 'cgg-swiper-no-swiping',
             // NS
-            slideClass: 'swiper-slide',
-            slideActiveClass: 'swiper-slide-active',
-            slideVisibleClass: 'swiper-slide-visible',
-            slideDuplicateClass: 'swiper-slide-duplicate',
-            slideNextClass: 'swiper-slide-next',
-            slidePrevClass: 'swiper-slide-prev',
-            wrapperClass: 'swiper-wrapper',
-            bulletClass: 'swiper-pagination-bullet',
-            bulletActiveClass: 'swiper-pagination-bullet-active',
-            buttonDisabledClass: 'swiper-button-disabled',
-            paginationHiddenClass: 'swiper-pagination-hidden',
+            slideClass: 'cgg-swiper-slide',
+            slideActiveClass: 'cgg-swiper-slide-active',
+            slideVisibleClass: 'cgg-swiper-slide-visible',
+            slideDuplicateClass: 'cgg-swiper-slide-duplicate',
+            slideNextClass: 'cgg-swiper-slide-next',
+            slidePrevClass: 'cgg-swiper-slide-prev',
+            wrapperClass: 'cgg-swiper-wrapper',
+            bulletClass: 'cgg-swiper-pagination-bullet',
+            bulletActiveClass: 'cgg-swiper-pagination-bullet-active',
+            buttonDisabledClass: 'cgg-swiper-button-disabled',
+            paginationHiddenClass: 'cgg-swiper-pagination-hidden',
             // Observer
             observer: false,
             observeParents: false,
@@ -154,30 +154,30 @@
             runCallbacksOnInit: true
             /*
             Callbacks:
-            onInit: function (swiper)
-            onDestroy: function (swiper)
-            onClick: function (swiper, e)
-            onTap: function (swiper, e)
-            onDoubleTap: function (swiper, e)
-            onSliderMove: function (swiper, e)
-            onSlideChangeStart: function (swiper)
-            onSlideChangeEnd: function (swiper)
-            onTransitionStart: function (swiper)
-            onTransitionEnd: function (swiper)
-            onImagesReady: function (swiper)
-            onProgress: function (swiper, progress)
-            onTouchStart: function (swiper, e)
-            onTouchMove: function (swiper, e)
-            onTouchMoveOpposite: function (swiper, e)
-            onTouchEnd: function (swiper, e)
-            onReachBeginning: function (swiper)
-            onReachEnd: function (swiper)
-            onSetTransition: function (swiper, duration)
-            onSetTranslate: function (swiper, translate)
-            onAutoplayStart: function (swiper)
-            onAutoplayStop: function (swiper),
-            onLazyImageLoad: function (swiper, slide, image)
-            onLazyImageReady: function (swiper, slide, image)
+            onInit: function (cggswiper)
+            onDestroy: function (cggswiper)
+            onClick: function (cggswiper, e)
+            onTap: function (cggswiper, e)
+            onDoubleTap: function (cggswiper, e)
+            onSliderMove: function (cggswiper, e)
+            onSlideChangeStart: function (cggswiper)
+            onSlideChangeEnd: function (cggswiper)
+            onTransitionStart: function (cggswiper)
+            onTransitionEnd: function (cggswiper)
+            onImagesReady: function (cggswiper)
+            onProgress: function (cggswiper, progress)
+            onTouchStart: function (cggswiper, e)
+            onTouchMove: function (cggswiper, e)
+            onTouchMoveOpposite: function (cggswiper, e)
+            onTouchEnd: function (cggswiper, e)
+            onReachBeginning: function (cggswiper)
+            onReachEnd: function (cggswiper)
+            onSetTransition: function (cggswiper, duration)
+            onSetTranslate: function (cggswiper, translate)
+            onAutoplayStart: function (cggswiper)
+            onAutoplayStop: function (cggswiper),
+            onLazyImageLoad: function (cggswiper, slide, image)
+            onLazyImageReady: function (cggswiper, slide, image)
             */
         
         };
@@ -197,7 +197,7 @@
             }
         }
         
-        // Swiper
+        // CGGSwiper
         var s = this;
         
         // Version
@@ -220,7 +220,7 @@
         }
         if (!$) return;
         
-        // Export it to Swiper instance
+        // Export it to CGGSwiper instance
         s.$ = $;
         /*=========================
           Preparation - Define Container, Wrapper and Pagination
@@ -229,22 +229,22 @@
         if (s.container.length === 0) return;
         if (s.container.length > 1) {
             s.container.each(function () {
-                new Swiper(this, params);
+                new CGGSwiper(this, params);
             });
             return;
         }
         
         // Save instance in container HTML Element and in data
-        s.container[0].swiper = s;
-        s.container.data('swiper', s);
+        s.container[0].cggswiper = s;
+        s.container.data('cggswiper', s);
         
-        s.classNames.push('swiper-container-' + s.params.direction);
+        s.classNames.push('cgg-swiper-container-' + s.params.direction);
         
         if (s.params.freeMode) {
-            s.classNames.push('swiper-container-free-mode');
+            s.classNames.push('cgg-swiper-container-free-mode');
         }
         if (!s.support.flexbox) {
-            s.classNames.push('swiper-container-no-flexbox');
+            s.classNames.push('cgg-swiper-container-no-flexbox');
             s.params.slidesPerColumn = 1;
         }
         // Enable slides progress when required
@@ -255,14 +255,14 @@
         if (['cube', 'coverflow'].indexOf(s.params.effect) >= 0) {
             if (s.support.transforms3d) {
                 s.params.watchSlidesProgress = true;
-                s.classNames.push('swiper-container-3d');
+                s.classNames.push('cgg-swiper-container-3d');
             }
             else {
                 s.params.effect = 'slide';
             }
         }
         if (s.params.effect !== 'slide') {
-            s.classNames.push('swiper-container-' + s.params.effect);
+            s.classNames.push('cgg-swiper-container-' + s.params.effect);
         }
         if (s.params.effect === 'cube') {
             s.params.resistanceRatio = 0;
@@ -297,7 +297,7 @@
         if (s.params.pagination) {
             s.paginationContainer = $(s.params.pagination);
             if (s.params.paginationClickable) {
-                s.paginationContainer.addClass('swiper-pagination-clickable');
+                s.paginationContainer.addClass('cgg-swiper-pagination-clickable');
             }
         }
         
@@ -309,7 +309,7 @@
         // RTL
         s.rtl = isH() && (s.container[0].dir.toLowerCase() === 'rtl' || s.container.css('direction') === 'rtl');
         if (s.rtl) {
-            s.classNames.push('swiper-container-rtl');
+            s.classNames.push('cgg-swiper-container-rtl');
         }
         
         // Wrong RTL support
@@ -319,12 +319,12 @@
         
         // Columns
         if (s.params.slidesPerColumn > 1) {
-            s.classNames.push('swiper-container-multirow');
+            s.classNames.push('cgg-swiper-container-multirow');
         }
         
         // Check for Android
         if (s.device.android) {
-            s.classNames.push('swiper-container-android');
+            s.classNames.push('cgg-swiper-container-android');
         }
         
         // Add classes
@@ -575,8 +575,8 @@
                         .css({
                             'margin-top': (row !== 0 && s.params.spaceBetween) && (s.params.spaceBetween + 'px')
                         })
-                        .attr('data-swiper-column', column)
-                        .attr('data-swiper-row', row);
+                        .attr('data-cggswiper-column', column)
+                        .attr('data-cggswiper-row', row);
         
                 }
                 if (slide.css('display') === 'none') continue;
@@ -592,7 +592,7 @@
                         s.slides[i].style.height = slideSize + 'px';
                     }
                 }
-                s.slides[i].swiperSlideSize = slideSize;
+                s.slides[i].cggswiperSlideSize = slideSize;
                 s.slidesSizesGrid.push(slideSize);
         
         
@@ -669,7 +669,7 @@
         };
         s.updateSlidesOffset = function () {
             for (var i = 0; i < s.slides.length; i++) {
-                s.slides[i].swiperSlideOffset = isH() ? s.slides[i].offsetLeft : s.slides[i].offsetTop;
+                s.slides[i].cggswiperSlideOffset = isH() ? s.slides[i].offsetLeft : s.slides[i].offsetTop;
             }
         };
         
@@ -681,7 +681,7 @@
                 translate = s.translate || 0;
             }
             if (s.slides.length === 0) return;
-            if (typeof s.slides[0].swiperSlideOffset === 'undefined') s.updateSlidesOffset();
+            if (typeof s.slides[0].cggswiperSlideOffset === 'undefined') s.updateSlidesOffset();
         
             var offsetCenter = s.params.centeredSlides ? -translate + s.size / 2 : -translate;
             if (s.rtl) offsetCenter = s.params.centeredSlides ? translate - s.size / 2 : translate;
@@ -693,10 +693,10 @@
             s.slides.removeClass(s.params.slideVisibleClass);
             for (var i = 0; i < s.slides.length; i++) {
                 var slide = s.slides[i];
-                var slideCenterOffset = (s.params.centeredSlides === true) ? slide.swiperSlideSize / 2 : 0;
-                var slideProgress = (offsetCenter - slide.swiperSlideOffset - slideCenterOffset) / (slide.swiperSlideSize + s.params.spaceBetween);
+                var slideCenterOffset = (s.params.centeredSlides === true) ? slide.cggswiperSlideSize / 2 : 0;
+                var slideProgress = (offsetCenter - slide.cggswiperSlideOffset - slideCenterOffset) / (slide.cggswiperSlideSize + s.params.spaceBetween);
                 if (s.params.watchSlidesVisibility) {
-                    var slideBefore = -(offsetCenter - slide.swiperSlideOffset - slideCenterOffset);
+                    var slideBefore = -(offsetCenter - slide.cggswiperSlideOffset - slideCenterOffset);
                     var slideAfter = slideBefore + s.slidesSizesGrid[i];
                     var isVisible =
                         (slideBefore >= 0 && slideBefore < s.size) ||
@@ -935,7 +935,7 @@
         
         // WP8 Touch Events Fix
         if (window.navigator.pointerEnabled || window.navigator.msPointerEnabled) {
-            (s.params.touchEventsTarget === 'container' ? s.container : s.wrapper).addClass('swiper-wp8-' + s.params.direction);
+            (s.params.touchEventsTarget === 'container' ? s.container : s.wrapper).addClass('cgg-swiper-wp8-' + s.params.direction);
         }
         
         // Attach/detach events
@@ -1065,17 +1065,17 @@
                 var slideToIndex = s.clickedIndex,
                     realIndex;
                 if (s.params.loop) {
-                    realIndex = $(s.clickedSlide).attr('data-swiper-slide-index');
+                    realIndex = $(s.clickedSlide).attr('data-cggswiper-slide-index');
                     if (slideToIndex > s.slides.length - s.params.slidesPerView) {
                         s.fixLoop();
-                        slideToIndex = s.wrapper.children('.' + s.params.slideClass + '[data-swiper-slide-index="' + realIndex + '"]').eq(0).index();
+                        slideToIndex = s.wrapper.children('.' + s.params.slideClass + '[data-cggswiper-slide-index="' + realIndex + '"]').eq(0).index();
                         setTimeout(function () {
                             s.slideTo(slideToIndex);
                         }, 0);
                     }
                     else if (slideToIndex < s.params.slidesPerView - 1) {
                         s.fixLoop();
-                        var duplicatedSlides = s.wrapper.children('.' + s.params.slideClass + '[data-swiper-slide-index="' + realIndex + '"]');
+                        var duplicatedSlides = s.wrapper.children('.' + s.params.slideClass + '[data-cggswiper-slide-index="' + realIndex + '"]');
                         slideToIndex = duplicatedSlides.eq(duplicatedSlides.length - 1).index();
                         setTimeout(function () {
                             s.slideTo(slideToIndex);
@@ -1158,7 +1158,7 @@
         s.onTouchMove = function (e) {
             if (e.originalEvent) e = e.originalEvent;
             if (isTouchEvent && e.type === 'mousemove') return;
-            if (e.preventedByNestedSwiper) return;
+            if (e.preventedByNestedCGGSwiper) return;
             if (s.params.onlyExternal) {
                 isMoved = true;
                 s.allowClick = false;
@@ -1242,18 +1242,18 @@
             s.swipeDirection = diff > 0 ? 'prev' : 'next';
             currentTranslate = diff + startTranslate;
         
-            var disableParentSwiper = true;
+            var disableParentCGGSwiper = true;
             if ((diff > 0 && currentTranslate > s.minTranslate())) {
-                disableParentSwiper = false;
+                disableParentCGGSwiper = false;
                 if (s.params.resistance) currentTranslate = s.minTranslate() - 1 + Math.pow(-s.minTranslate() + startTranslate + diff, s.params.resistanceRatio);
             }
             else if (diff < 0 && currentTranslate < s.maxTranslate()) {
-                disableParentSwiper = false;
+                disableParentCGGSwiper = false;
                 if (s.params.resistance) currentTranslate = s.maxTranslate() + 1 - Math.pow(s.maxTranslate() - startTranslate - diff, s.params.resistanceRatio);
             }
         
-            if (disableParentSwiper) {
-                e.preventedByNestedSwiper = true;
+            if (disableParentCGGSwiper) {
+                e.preventedByNestedCGGSwiper = true;
             }
         
             // Directions locks
@@ -1851,7 +1851,7 @@
                 var slide = $(this);
                 if (index < s.loopedSlides) appendSlides.push(el);
                 if (index < slides.length && index >= slides.length - s.loopedSlides) prependSlides.push(el);
-                slide.attr('data-swiper-slide-index', index);
+                slide.attr('data-cggswiper-slide-index', index);
             });
             for (i = 0; i < appendSlides.length; i++) {
                 s.wrapper.append($(appendSlides[i].cloneNode(true)).addClass(s.params.slideDuplicateClass));
@@ -1862,7 +1862,7 @@
         };
         s.destroyLoop = function () {
             s.wrapper.children('.' + s.params.slideClass + '.' + s.params.slideDuplicateClass).remove();
-            s.slides.removeAttr('data-swiper-slide-index');
+            s.slides.removeAttr('data-cggswiper-slide-index');
         };
         s.fixLoop = function () {
             var newIndex;
@@ -1977,7 +1977,7 @@
                 setTranslate: function () {
                     for (var i = 0; i < s.slides.length; i++) {
                         var slide = s.slides.eq(i);
-                        var offset = slide[0].swiperSlideOffset;
+                        var offset = slide[0].cggswiperSlideOffset;
                         var tx = -offset;
                         if (!s.params.virtualTranslate) tx = tx - s.translate;
                         var ty = 0;
@@ -2019,17 +2019,17 @@
                     var wrapperRotate = 0, cubeShadow;
                     if (s.params.cube.shadow) {
                         if (isH()) {
-                            cubeShadow = s.wrapper.find('.swiper-cube-shadow');
+                            cubeShadow = s.wrapper.find('.cgg-swiper-cube-shadow');
                             if (cubeShadow.length === 0) {
-                                cubeShadow = $('<div class="swiper-cube-shadow"></div>');
+                                cubeShadow = $('<div class="cgg-swiper-cube-shadow"></div>');
                                 s.wrapper.append(cubeShadow);
                             }
                             cubeShadow.css({height: s.width + 'px'});
                         }
                         else {
-                            cubeShadow = s.container.find('.swiper-cube-shadow');
+                            cubeShadow = s.container.find('.cgg-swiper-cube-shadow');
                             if (cubeShadow.length === 0) {
-                                cubeShadow = $('<div class="swiper-cube-shadow"></div>');
+                                cubeShadow = $('<div class="cgg-swiper-cube-shadow"></div>');
                                 s.container.append(cubeShadow);
                             }
                         }
@@ -2077,14 +2077,14 @@
                         slide.transform(transform);
                         if (s.params.cube.slideShadows) {
                             //Set shadows
-                            var shadowBefore = isH() ? slide.find('.swiper-slide-shadow-left') : slide.find('.swiper-slide-shadow-top');
-                            var shadowAfter = isH() ? slide.find('.swiper-slide-shadow-right') : slide.find('.swiper-slide-shadow-bottom');
+                            var shadowBefore = isH() ? slide.find('.cgg-swiper-slide-shadow-left') : slide.find('.cgg-swiper-slide-shadow-top');
+                            var shadowAfter = isH() ? slide.find('.cgg-swiper-slide-shadow-right') : slide.find('.cgg-swiper-slide-shadow-bottom');
                             if (shadowBefore.length === 0) {
-                                shadowBefore = $('<div class="swiper-slide-shadow-' + (isH() ? 'left' : 'top') + '"></div>');
+                                shadowBefore = $('<div class="cgg-swiper-slide-shadow-' + (isH() ? 'left' : 'top') + '"></div>');
                                 slide.append(shadowBefore);
                             }
                             if (shadowAfter.length === 0) {
-                                shadowAfter = $('<div class="swiper-slide-shadow-' + (isH() ? 'right' : 'bottom') + '"></div>');
+                                shadowAfter = $('<div class="cgg-swiper-slide-shadow-' + (isH() ? 'right' : 'bottom') + '"></div>');
                                 slide.append(shadowAfter);
                             }
                             var shadowOpacity = slide[0].progress;
@@ -2116,9 +2116,9 @@
                     s.wrapper.transform('translate3d(0px,0,' + zFactor + 'px) rotateX(' + (isH() ? 0 : wrapperRotate) + 'deg) rotateY(' + (isH() ? -wrapperRotate : 0) + 'deg)');
                 },
                 setTransition: function (duration) {
-                    s.slides.transition(duration).find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left').transition(duration);
+                    s.slides.transition(duration).find('.cgg-swiper-slide-shadow-top, .cgg-swiper-slide-shadow-right, .cgg-swiper-slide-shadow-bottom, .cgg-swiper-slide-shadow-left').transition(duration);
                     if (s.params.cube.shadow && !isH()) {
-                        s.container.find('.swiper-cube-shadow').transition(duration);
+                        s.container.find('.cgg-swiper-cube-shadow').transition(duration);
                     }
                 }
             },
@@ -2132,7 +2132,7 @@
                     for (var i = 0, length = s.slides.length; i < length; i++) {
                         var slide = s.slides.eq(i);
                         var slideSize = s.slidesSizesGrid[i];
-                        var slideOffset = slide[0].swiperSlideOffset;
+                        var slideOffset = slide[0].cggswiperSlideOffset;
                         var offsetMultiplier = (center - slideOffset - slideSize / 2) / slideSize * s.params.coverflow.modifier;
         
                         var rotateY = isH() ? rotate * offsetMultiplier : 0;
@@ -2156,14 +2156,14 @@
                         slide[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
                         if (s.params.coverflow.slideShadows) {
                             //Set shadows
-                            var shadowBefore = isH() ? slide.find('.swiper-slide-shadow-left') : slide.find('.swiper-slide-shadow-top');
-                            var shadowAfter = isH() ? slide.find('.swiper-slide-shadow-right') : slide.find('.swiper-slide-shadow-bottom');
+                            var shadowBefore = isH() ? slide.find('.cgg-swiper-slide-shadow-left') : slide.find('.cgg-swiper-slide-shadow-top');
+                            var shadowAfter = isH() ? slide.find('.cgg-swiper-slide-shadow-right') : slide.find('.cgg-swiper-slide-shadow-bottom');
                             if (shadowBefore.length === 0) {
-                                shadowBefore = $('<div class="swiper-slide-shadow-' + (isH() ? 'left' : 'top') + '"></div>');
+                                shadowBefore = $('<div class="cgg-swiper-slide-shadow-' + (isH() ? 'left' : 'top') + '"></div>');
                                 slide.append(shadowBefore);
                             }
                             if (shadowAfter.length === 0) {
-                                shadowAfter = $('<div class="swiper-slide-shadow-' + (isH() ? 'right' : 'bottom') + '"></div>');
+                                shadowAfter = $('<div class="cgg-swiper-slide-shadow-' + (isH() ? 'right' : 'bottom') + '"></div>');
                                 slide.append(shadowAfter);
                             }
                             if (shadowBefore.length) shadowBefore[0].style.opacity = offsetMultiplier > 0 ? offsetMultiplier : 0;
@@ -2178,7 +2178,7 @@
                     }
                 },
                 setTransition: function (duration) {
-                    s.slides.transition(duration).find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left').transition(duration);
+                    s.slides.transition(duration).find('.cgg-swiper-slide-shadow-top, .cgg-swiper-slide-shadow-right, .cgg-swiper-slide-shadow-bottom, .cgg-swiper-slide-shadow-left').transition(duration);
                 }
             }
         };
@@ -2194,15 +2194,15 @@
                 if (s.slides.length === 0) return;
                 
                 var slide = s.slides.eq(index);
-                var img = slide.find('.swiper-lazy:not(.swiper-lazy-loaded):not(.swiper-lazy-loading)');
-                if (slide.hasClass('swiper-lazy') && !slide.hasClass('swiper-lazy-loaded') && !slide.hasClass('swiper-lazy-loading')) {
+                var img = slide.find('.cgg-swiper-lazy:not(.cgg-swiper-lazy-loaded):not(.cgg-swiper-lazy-loading)');
+                if (slide.hasClass('cgg-swiper-lazy') && !slide.hasClass('cgg-swiper-lazy-loaded') && !slide.hasClass('cgg-swiper-lazy-loading')) {
                     img.add(slide[0]);
                 }
                 if (img.length === 0) return;
         
                 img.each(function () {
                     var _img = $(this);
-                    _img.addClass('swiper-lazy-loading');
+                    _img.addClass('cgg-swiper-lazy-loading');
                     var background = _img.attr('data-background');
                     var src = _img.attr('data-src');
                     s.loadImage(_img[0], (src || background), false, function () {
@@ -2215,16 +2215,16 @@
                             _img.removeAttr('data-src');
                         }
                             
-                        _img.addClass('swiper-lazy-loaded').removeClass('swiper-lazy-loading');
-                        slide.find('.swiper-lazy-preloader, .preloader').remove();
+                        _img.addClass('cgg-swiper-lazy-loaded').removeClass('cgg-swiper-lazy-loading');
+                        slide.find('.cgg-swiper-lazy-preloader, .preloader').remove();
                         if (s.params.loop && loadInDuplicate) {
-                            var slideOriginalIndex = slide.attr('data-swiper-slide-index');
+                            var slideOriginalIndex = slide.attr('data-cggswiper-slide-index');
                             if (slide.hasClass(s.params.slideDuplicateClass)) {
-                                var originalSlide = s.wrapper.children('[data-swiper-slide-index="' + slideOriginalIndex + '"]:not(.' + s.params.slideDuplicateClass + ')');
+                                var originalSlide = s.wrapper.children('[data-cggswiper-slide-index="' + slideOriginalIndex + '"]:not(.' + s.params.slideDuplicateClass + ')');
                                 s.lazy.loadImageInSlide(originalSlide.index(), false);
                             }
                             else {
-                                var duplicatedSlide = s.wrapper.children('.' + s.params.slideDuplicateClass + '[data-swiper-slide-index="' + slideOriginalIndex + '"]');
+                                var duplicatedSlide = s.wrapper.children('.' + s.params.slideDuplicateClass + '[data-cggswiper-slide-index="' + slideOriginalIndex + '"]');
                                 s.lazy.loadImageInSlide(duplicatedSlide.index(), false);
                             }
                         }
@@ -2295,9 +2295,9 @@
                 if (!s.params.scrollbar) return;
                 var sb = s.scrollbar;
                 sb.track = $(s.params.scrollbar);
-                sb.drag = sb.track.find('.swiper-scrollbar-drag');
+                sb.drag = sb.track.find('.cgg-swiper-scrollbar-drag');
                 if (sb.drag.length === 0) {
-                    sb.drag = $('<div class="swiper-scrollbar-drag"></div>');
+                    sb.drag = $('<div class="cgg-swiper-scrollbar-drag"></div>');
                     sb.track.append(sb.drag);
                 }
                 sb.drag[0].style.width = '';
@@ -2406,12 +2406,12 @@
                 }
                 if (s.isArray(controlled)) {
                     for (var i = 0; i < controlled.length; i++) {
-                        if (controlled[i] !== byController && controlled[i] instanceof Swiper) {
+                        if (controlled[i] !== byController && controlled[i] instanceof CGGSwiper) {
                             setControlledTranslate(controlled[i]);
                         }
                     }
                 }
-                else if (controlled instanceof Swiper && byController !== controlled) {
+                else if (controlled instanceof CGGSwiper && byController !== controlled) {
                     setControlledTranslate(controlled);
                 }
             },
@@ -2430,12 +2430,12 @@
                 }
                 if (s.isArray(controlled)) {
                     for (i = 0; i < controlled.length; i++) {
-                        if (controlled[i] !== byController && controlled[i] instanceof Swiper) {
+                        if (controlled[i] !== byController && controlled[i] instanceof CGGSwiper) {
                             setControlledTransition(controlled[i]);
                         }
                     }
                 }
-                else if (controlled instanceof Swiper && byController !== controlled) {
+                else if (controlled instanceof CGGSwiper && byController !== controlled) {
                     setControlledTransition(controlled);
                 }
             }
@@ -2487,8 +2487,8 @@
             }
             if (kc === 37 || kc === 39 || kc === 38 || kc === 40) {
                 var inView = false;
-                //Check that swiper should be inside of visible area of window
-                if (s.container.parents('.swiper-slide').length > 0 && s.container.parents('.swiper-slide-active').length === 0) {
+                //Check that cggswiper should be inside of visible area of window
+                if (s.container.parents('.cgg-swiper-slide').length > 0 && s.container.parents('.cgg-swiper-slide-active').length === 0) {
                     return;
                 }
                 var windowScroll = {
@@ -2497,16 +2497,16 @@
                 };
                 var windowWidth = window.innerWidth;
                 var windowHeight = window.innerHeight;
-                var swiperOffset = s.container.offset();
-                if (s.rtl) swiperOffset.left = swiperOffset.left - s.container[0].scrollLeft;
-                var swiperCoord = [
-                    [swiperOffset.left, swiperOffset.top],
-                    [swiperOffset.left + s.width, swiperOffset.top],
-                    [swiperOffset.left, swiperOffset.top + s.height],
-                    [swiperOffset.left + s.width, swiperOffset.top + s.height]
+                var cggswiperOffset = s.container.offset();
+                if (s.rtl) cggswiperOffset.left = cggswiperOffset.left - s.container[0].scrollLeft;
+                var cggswiperCoord = [
+                    [cggswiperOffset.left, cggswiperOffset.top],
+                    [cggswiperOffset.left + s.width, cggswiperOffset.top],
+                    [cggswiperOffset.left, cggswiperOffset.top + s.height],
+                    [cggswiperOffset.left + s.width, cggswiperOffset.top + s.height]
                 ];
-                for (var i = 0; i < swiperCoord.length; i++) {
-                    var point = swiperCoord[i];
+                for (var i = 0; i < cggswiperCoord.length; i++) {
+                    var point = cggswiperCoord[i];
                     if (
                         point[0] >= windowScroll.left && point[0] <= windowScroll.left + windowWidth &&
                         point[1] >= windowScroll.top && point[1] <= windowScroll.top + windowHeight
@@ -2668,9 +2668,9 @@
             el = $(el);
             var p, pX, pY;
             
-            p = el.attr('data-swiper-parallax') || '0';
-            pX = el.attr('data-swiper-parallax-x');
-            pY = el.attr('data-swiper-parallax-y');
+            p = el.attr('data-cggswiper-parallax') || '0';
+            pX = el.attr('data-cggswiper-parallax-x');
+            pY = el.attr('data-cggswiper-parallax-y');
             if (pX || pY) {
                 pX = pX || '0';
                 pY = pY || '0';
@@ -2701,13 +2701,13 @@
         }   
         s.parallax = {
             setTranslate: function () {
-                s.container.children('[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y]').each(function(){
+                s.container.children('[data-cggswiper-parallax], [data-cggswiper-parallax-x], [data-cggswiper-parallax-y]').each(function(){
                     setParallaxTransform(this, s.progress);
                     
                 });
                 s.slides.each(function () {
                     var slide = $(this);
-                    slide.find('[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y]').each(function () {
+                    slide.find('[data-cggswiper-parallax], [data-cggswiper-parallax-x], [data-cggswiper-parallax-y]').each(function () {
                         var progress = Math.min(Math.max(slide[0].progress, -1), 1);
                         setParallaxTransform(this, progress);
                     });
@@ -2715,9 +2715,9 @@
             },
             setTransition: function (duration) {
                 if (typeof duration === 'undefined') duration = s.params.speed;
-                s.container.find('[data-swiper-parallax], [data-swiper-parallax-x], [data-swiper-parallax-y]').each(function(){
+                s.container.find('[data-cggswiper-parallax], [data-cggswiper-parallax-x], [data-cggswiper-parallax-y]').each(function(){
                     var el = $(this);
-                    var parallaxDuration = parseInt(el.attr('data-swiper-parallax-duration'), 10) || duration;
+                    var parallaxDuration = parseInt(el.attr('data-cggswiper-parallax-duration'), 10) || duration;
                     if (duration === 0) parallaxDuration = 0;
                     el.transition(parallaxDuration);
                 });
@@ -2852,7 +2852,7 @@
                 }
             },
         
-            liveRegion: $('<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>'),
+            liveRegion: $('<span class="cgg-swiper-notification" aria-live="assertive" aria-atomic="true"></span>'),
         
             notify: function (message) {
                 var notification = s.a11y.liveRegion;
@@ -2952,8 +2952,8 @@
                       s.params.slidePrevClass
                     ].join(' '))
                     .removeAttr('style')
-                    .removeAttr('data-swiper-column')
-                    .removeAttr('data-swiper-row');
+                    .removeAttr('data-cggswiper-column')
+                    .removeAttr('data-cggswiper-row');
             }
         
             // Pagination/Bullets
@@ -3009,76 +3009,76 @@
         s.init();
         
 
-    
-        // Return swiper instance
-        return s;
-    };
-    
+        
+            // Return cggcgg-swiper instance
+            return s;
+        };
+        
 
-    /*==================================================
-        Prototype
-    ====================================================*/
-    Swiper.prototype = {
-        isSafari: (function () {
-            var ua = navigator.userAgent.toLowerCase();
-            return (ua.indexOf('safari') >= 0 && ua.indexOf('chrome') < 0 && ua.indexOf('android') < 0);
-        })(),
-        isUiWebView: /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent),
-        isArray: function (arr) {
-            return Object.prototype.toString.apply(arr) === '[object Array]';
-        },
         /*==================================================
-        Browser
+            Prototype
         ====================================================*/
-        browser: {
-            ie: window.navigator.pointerEnabled || window.navigator.msPointerEnabled,
-            ieTouch: (window.navigator.msPointerEnabled && window.navigator.msMaxTouchPoints > 1) || (window.navigator.pointerEnabled && window.navigator.maxTouchPoints > 1),
-        },
-        /*==================================================
-        Devices
-        ====================================================*/
-        device: (function () {
-            var ua = navigator.userAgent;
-            var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
-            var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
-            var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
-            var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
-            return {
-                ios: ipad || iphone || ipad,
-                android: android
-            };
-        })(),
-        /*==================================================
-        Feature Detection
-        ====================================================*/
-        support: {
-            touch : (window.Modernizr && Modernizr.touch === true) || (function () {
-                return !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+        CGGSwiper.prototype = {
+            isSafari: (function () {
+                var ua = navigator.userAgent.toLowerCase();
+                return (ua.indexOf('safari') >= 0 && ua.indexOf('chrome') < 0 && ua.indexOf('android') < 0);
             })(),
-    
-            transforms3d : (window.Modernizr && Modernizr.csstransforms3d === true) || (function () {
-                var div = document.createElement('div').style;
-                return ('webkitPerspective' in div || 'MozPerspective' in div || 'OPerspective' in div || 'MsPerspective' in div || 'perspective' in div);
+            isUiWebView: /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent),
+            isArray: function (arr) {
+                return Object.prototype.toString.apply(arr) === '[object Array]';
+            },
+            /*==================================================
+            Browser
+            ====================================================*/
+            browser: {
+                ie: window.navigator.pointerEnabled || window.navigator.msPointerEnabled,
+                ieTouch: (window.navigator.msPointerEnabled && window.navigator.msMaxTouchPoints > 1) || (window.navigator.pointerEnabled && window.navigator.maxTouchPoints > 1),
+            },
+            /*==================================================
+            Devices
+            ====================================================*/
+            device: (function () {
+                var ua = navigator.userAgent;
+                var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
+                var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+                var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
+                var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+                return {
+                    ios: ipad || iphone || ipad,
+                    android: android
+                };
             })(),
-    
-            flexbox: (function () {
-                var div = document.createElement('div').style;
-                var styles = ('alignItems webkitAlignItems webkitBoxAlign msFlexAlign mozBoxAlign webkitFlexDirection msFlexDirection mozBoxDirection mozBoxOrient webkitBoxDirection webkitBoxOrient').split(' ');
-                for (var i = 0; i < styles.length; i++) {
-                    if (styles[i] in div) return true;
-                }
-            })(),
-    
-            observer: (function () {
-                return ('MutationObserver' in window || 'WebkitMutationObserver' in window);
-            })()
-        },
-        /*==================================================
-        Plugins
-        ====================================================*/
-        plugins: {}
-    };
-    
+            /*==================================================
+            Feature Detection
+            ====================================================*/
+            support: {
+                touch : (window.Modernizr && Modernizr.touch === true) || (function () {
+                    return !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+                })(),
+        
+                transforms3d : (window.Modernizr && Modernizr.csstransforms3d === true) || (function () {
+                    var div = document.createElement('div').style;
+                    return ('webkitPerspective' in div || 'MozPerspective' in div || 'OPerspective' in div || 'MsPerspective' in div || 'perspective' in div);
+                })(),
+        
+                flexbox: (function () {
+                    var div = document.createElement('div').style;
+                    var styles = ('alignItems webkitAlignItems webkitBoxAlign msFlexAlign mozBoxAlign webkitFlexDirection msFlexDirection mozBoxDirection mozBoxOrient webkitBoxDirection webkitBoxOrient').split(' ');
+                    for (var i = 0; i < styles.length; i++) {
+                        if (styles[i] in div) return true;
+                    }
+                })(),
+        
+                observer: (function () {
+                    return ('MutationObserver' in window || 'WebkitMutationObserver' in window);
+                })()
+            },
+            /*==================================================
+            Plugins
+            ====================================================*/
+            plugins: {}
+        };
+        
 
     /*===========================
     Dom7 Library
@@ -3733,22 +3733,22 @@
     
 
     /*===========================
-    Add .swiper plugin from Dom libraries
+    Add .cggswiper plugin from Dom libraries
     ===========================*/
-    var swiperDomPlugins = ['jQuery', 'Zepto', 'Dom7'];
+    var cggswiperDomPlugins = ['jQuery', 'Zepto', 'Dom7'];
     function addLibraryPlugin(lib) {
-        lib.fn.swiper = function (params) {
+        lib.fn.cggswiper = function (params) {
             var firstInstance;
             lib(this).each(function () {
-                var s = new Swiper(this, params);
+                var s = new CGGSwiper(this, params);
                 if (!firstInstance) firstInstance = s;
             });
             return firstInstance;
         };
     }
-    for (var i = 0; i < swiperDomPlugins.length; i++) {
-        if (window[swiperDomPlugins[i]]) {
-            addLibraryPlugin(window[swiperDomPlugins[i]]);
+    for (var i = 0; i < cggswiperDomPlugins.length; i++) {
+        if (window[cggswiperDomPlugins[i]]) {
+            addLibraryPlugin(window[cggswiperDomPlugins[i]]);
         }
     }
     // Required DOM Plugins
@@ -3805,18 +3805,18 @@
         
     
 
-    window.Swiper = Swiper;
+    window.CGGSwiper = CGGSwiper;
 })();
 /*===========================
-Swiper AMD Export
+CGGSwiper AMD Export
 ===========================*/
 if (typeof(module) !== 'undefined')
 {
-    module.exports = window.Swiper;
+    module.exports = window.CGGSwiper;
 }
 else if (typeof define === 'function' && define.amd) {
     define([], function () {
         'use strict';
-        return window.Swiper;
+        return window.CGGSwiper;
     });
 }
