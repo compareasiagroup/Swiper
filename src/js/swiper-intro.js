@@ -1,5 +1,5 @@
 /*===========================
-Swiper
+CGGSwiper
 ===========================*/
-var Swiper = function (container, params) {
-    if (!(this instanceof Swiper)) return new Swiper(container, params);
+var CGGSwiper = function (container, params) {
+    if (!(this instanceof CGGSwiper)) return new CGGSwiper(container, params);

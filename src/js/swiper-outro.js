@@ -1,4 +1,4 @@
 
-    // Return swiper instance
+    // Return cggcgg-swiper instance
     return s;
 };

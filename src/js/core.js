@@ -106,19 +106,19 @@ var defaults = {
     allowSwipeToNext: true,
     swipeHandler: null, //'.swipe-handler',
     noSwiping: true,
-    noSwipingClass: 'swiper-no-swiping',
+    noSwipingClass: 'cgg-swiper-no-swiping',
     // NS
-    slideClass: 'swiper-slide',
-    slideActiveClass: 'swiper-slide-active',
-    slideVisibleClass: 'swiper-slide-visible',
-    slideDuplicateClass: 'swiper-slide-duplicate',
-    slideNextClass: 'swiper-slide-next',
-    slidePrevClass: 'swiper-slide-prev',
-    wrapperClass: 'swiper-wrapper',
-    bulletClass: 'swiper-pagination-bullet',
-    bulletActiveClass: 'swiper-pagination-bullet-active',
-    buttonDisabledClass: 'swiper-button-disabled',
-    paginationHiddenClass: 'swiper-pagination-hidden',
+    slideClass: 'cgg-swiper-slide',
+    slideActiveClass: 'cgg-swiper-slide-active',
+    slideVisibleClass: 'cgg-swiper-slide-visible',
+    slideDuplicateClass: 'cgg-swiper-slide-duplicate',
+    slideNextClass: 'cgg-swiper-slide-next',
+    slidePrevClass: 'cgg-swiper-slide-prev',
+    wrapperClass: 'cgg-swiper-wrapper',
+    bulletClass: 'cgg-swiper-pagination-bullet',
+    bulletActiveClass: 'cgg-swiper-pagination-bullet-active',
+    buttonDisabledClass: 'cgg-swiper-button-disabled',
+    paginationHiddenClass: 'cgg-swiper-pagination-hidden',
     // Observer
     observer: false,
     observeParents: false,
@@ -132,30 +132,30 @@ var defaults = {
     runCallbacksOnInit: true
     /*
     Callbacks:
-    onInit: function (swiper)
-    onDestroy: function (swiper)
-    onClick: function (swiper, e)
-    onTap: function (swiper, e)
-    onDoubleTap: function (swiper, e)
-    onSliderMove: function (swiper, e)
-    onSlideChangeStart: function (swiper)
-    onSlideChangeEnd: function (swiper)
-    onTransitionStart: function (swiper)
-    onTransitionEnd: function (swiper)
-    onImagesReady: function (swiper)
-    onProgress: function (swiper, progress)
-    onTouchStart: function (swiper, e)
-    onTouchMove: function (swiper, e)
-    onTouchMoveOpposite: function (swiper, e)
-    onTouchEnd: function (swiper, e)
-    onReachBeginning: function (swiper)
-    onReachEnd: function (swiper)
-    onSetTransition: function (swiper, duration)
-    onSetTranslate: function (swiper, translate)
-    onAutoplayStart: function (swiper)
-    onAutoplayStop: function (swiper),
-    onLazyImageLoad: function (swiper, slide, image)
-    onLazyImageReady: function (swiper, slide, image)
+    onInit: function (cggswiper)
+    onDestroy: function (cggswiper)
+    onClick: function (cggswiper, e)
+    onTap: function (cggswiper, e)
+    onDoubleTap: function (cggswiper, e)
+    onSliderMove: function (cggswiper, e)
+    onSlideChangeStart: function (cggswiper)
+    onSlideChangeEnd: function (cggswiper)
+    onTransitionStart: function (cggswiper)
+    onTransitionEnd: function (cggswiper)
+    onImagesReady: function (cggswiper)
+    onProgress: function (cggswiper, progress)
+    onTouchStart: function (cggswiper, e)
+    onTouchMove: function (cggswiper, e)
+    onTouchMoveOpposite: function (cggswiper, e)
+    onTouchEnd: function (cggswiper, e)
+    onReachBeginning: function (cggswiper)
+    onReachEnd: function (cggswiper)
+    onSetTransition: function (cggswiper, duration)
+    onSetTranslate: function (cggswiper, translate)
+    onAutoplayStart: function (cggswiper)
+    onAutoplayStop: function (cggswiper),
+    onLazyImageLoad: function (cggswiper, slide, image)
+    onLazyImageReady: function (cggswiper, slide, image)
     */
 
 };
@@ -175,7 +175,7 @@ for (var def in defaults) {
     }
 }
 
-// Swiper
+// CGGSwiper
 var s = this;
 
 // Version
@@ -198,7 +198,7 @@ else {
 }
 if (!$) return;
 
-// Export it to Swiper instance
+// Export it to CGGSwiper instance
 s.$ = $;
 /*=========================
   Preparation - Define Container, Wrapper and Pagination
@@ -207,22 +207,22 @@ s.container = $(container);
 if (s.container.length === 0) return;
 if (s.container.length > 1) {
     s.container.each(function () {
-        new Swiper(this, params);
+        new CGGSwiper(this, params);
     });
     return;
 }
 
 // Save instance in container HTML Element and in data
-s.container[0].swiper = s;
-s.container.data('swiper', s);
+s.container[0].cggswiper = s;
+s.container.data('cggswiper', s);
 
-s.classNames.push('swiper-container-' + s.params.direction);
+s.classNames.push('cgg-swiper-container-' + s.params.direction);
 
 if (s.params.freeMode) {
-    s.classNames.push('swiper-container-free-mode');
+    s.classNames.push('cgg-swiper-container-free-mode');
 }
 if (!s.support.flexbox) {
-    s.classNames.push('swiper-container-no-flexbox');
+    s.classNames.push('cgg-swiper-container-no-flexbox');
     s.params.slidesPerColumn = 1;
 }
 // Enable slides progress when required
@@ -233,14 +233,14 @@ if (s.params.parallax || s.params.watchSlidesVisibility) {
 if (['cube', 'coverflow'].indexOf(s.params.effect) >= 0) {
     if (s.support.transforms3d) {
         s.params.watchSlidesProgress = true;
-        s.classNames.push('swiper-container-3d');
+        s.classNames.push('cgg-swiper-container-3d');
     }
     else {
         s.params.effect = 'slide';
     }
 }
 if (s.params.effect !== 'slide') {
-    s.classNames.push('swiper-container-' + s.params.effect);
+    s.classNames.push('cgg-swiper-container-' + s.params.effect);
 }
 if (s.params.effect === 'cube') {
     s.params.resistanceRatio = 0;
@@ -275,7 +275,7 @@ s.wrapper = s.container.children('.' + s.params.wrapperClass);
 if (s.params.pagination) {
     s.paginationContainer = $(s.params.pagination);
     if (s.params.paginationClickable) {
-        s.paginationContainer.addClass('swiper-pagination-clickable');
+        s.paginationContainer.addClass('cgg-swiper-pagination-clickable');
     }
 }
 
@@ -287,7 +287,7 @@ function isH() {
 // RTL
 s.rtl = isH() && (s.container[0].dir.toLowerCase() === 'rtl' || s.container.css('direction') === 'rtl');
 if (s.rtl) {
-    s.classNames.push('swiper-container-rtl');
+    s.classNames.push('cgg-swiper-container-rtl');
 }
 
 // Wrong RTL support
@@ -297,12 +297,12 @@ if (s.rtl) {
 
 // Columns
 if (s.params.slidesPerColumn > 1) {
-    s.classNames.push('swiper-container-multirow');
+    s.classNames.push('cgg-swiper-container-multirow');
 }
 
 // Check for Android
 if (s.device.android) {
-    s.classNames.push('swiper-container-android');
+    s.classNames.push('cgg-swiper-container-android');
 }
 
 // Add classes
@@ -553,8 +553,8 @@ s.updateSlidesSize = function () {
                 .css({
                     'margin-top': (row !== 0 && s.params.spaceBetween) && (s.params.spaceBetween + 'px')
                 })
-                .attr('data-swiper-column', column)
-                .attr('data-swiper-row', row);
+                .attr('data-cggswiper-column', column)
+                .attr('data-cggswiper-row', row);
 
         }
         if (slide.css('display') === 'none') continue;
@@ -570,7 +570,7 @@ s.updateSlidesSize = function () {
                 s.slides[i].style.height = slideSize + 'px';
             }
         }
-        s.slides[i].swiperSlideSize = slideSize;
+        s.slides[i].cggswiperSlideSize = slideSize;
         s.slidesSizesGrid.push(slideSize);
 
 
@@ -647,7 +647,7 @@ s.updateSlidesSize = function () {
 };
 s.updateSlidesOffset = function () {
     for (var i = 0; i < s.slides.length; i++) {
-        s.slides[i].swiperSlideOffset = isH() ? s.slides[i].offsetLeft : s.slides[i].offsetTop;
+        s.slides[i].cggswiperSlideOffset = isH() ? s.slides[i].offsetLeft : s.slides[i].offsetTop;
     }
 };
 
@@ -659,7 +659,7 @@ s.updateSlidesProgress = function (translate) {
         translate = s.translate || 0;
     }
     if (s.slides.length === 0) return;
-    if (typeof s.slides[0].swiperSlideOffset === 'undefined') s.updateSlidesOffset();
+    if (typeof s.slides[0].cggswiperSlideOffset === 'undefined') s.updateSlidesOffset();
 
     var offsetCenter = s.params.centeredSlides ? -translate + s.size / 2 : -translate;
     if (s.rtl) offsetCenter = s.params.centeredSlides ? translate - s.size / 2 : translate;
@@ -671,10 +671,10 @@ s.updateSlidesProgress = function (translate) {
     s.slides.removeClass(s.params.slideVisibleClass);
     for (var i = 0; i < s.slides.length; i++) {
         var slide = s.slides[i];
-        var slideCenterOffset = (s.params.centeredSlides === true) ? slide.swiperSlideSize / 2 : 0;
-        var slideProgress = (offsetCenter - slide.swiperSlideOffset - slideCenterOffset) / (slide.swiperSlideSize + s.params.spaceBetween);
+        var slideCenterOffset = (s.params.centeredSlides === true) ? slide.cggswiperSlideSize / 2 : 0;
+        var slideProgress = (offsetCenter - slide.cggswiperSlideOffset - slideCenterOffset) / (slide.cggswiperSlideSize + s.params.spaceBetween);
         if (s.params.watchSlidesVisibility) {
-            var slideBefore = -(offsetCenter - slide.swiperSlideOffset - slideCenterOffset);
+            var slideBefore = -(offsetCenter - slide.cggswiperSlideOffset - slideCenterOffset);
             var slideAfter = slideBefore + s.slidesSizesGrid[i];
             var isVisible =
                 (slideBefore >= 0 && slideBefore < s.size) ||
@@ -913,7 +913,7 @@ s.touchEvents = {
 
 // WP8 Touch Events Fix
 if (window.navigator.pointerEnabled || window.navigator.msPointerEnabled) {
-    (s.params.touchEventsTarget === 'container' ? s.container : s.wrapper).addClass('swiper-wp8-' + s.params.direction);
+    (s.params.touchEventsTarget === 'container' ? s.container : s.wrapper).addClass('cgg-swiper-wp8-' + s.params.direction);
 }
 
 // Attach/detach events
@@ -1043,17 +1043,17 @@ s.updateClickedSlide = function (e) {
         var slideToIndex = s.clickedIndex,
             realIndex;
         if (s.params.loop) {
-            realIndex = $(s.clickedSlide).attr('data-swiper-slide-index');
+            realIndex = $(s.clickedSlide).attr('data-cggswiper-slide-index');
             if (slideToIndex > s.slides.length - s.params.slidesPerView) {
                 s.fixLoop();
-                slideToIndex = s.wrapper.children('.' + s.params.slideClass + '[data-swiper-slide-index="' + realIndex + '"]').eq(0).index();
+                slideToIndex = s.wrapper.children('.' + s.params.slideClass + '[data-cggswiper-slide-index="' + realIndex + '"]').eq(0).index();
                 setTimeout(function () {
                     s.slideTo(slideToIndex);
                 }, 0);
             }
             else if (slideToIndex < s.params.slidesPerView - 1) {
                 s.fixLoop();
-                var duplicatedSlides = s.wrapper.children('.' + s.params.slideClass + '[data-swiper-slide-index="' + realIndex + '"]');
+                var duplicatedSlides = s.wrapper.children('.' + s.params.slideClass + '[data-cggswiper-slide-index="' + realIndex + '"]');
                 slideToIndex = duplicatedSlides.eq(duplicatedSlides.length - 1).index();
                 setTimeout(function () {
                     s.slideTo(slideToIndex);
@@ -1136,7 +1136,7 @@ s.onTouchStart = function (e) {
 s.onTouchMove = function (e) {
     if (e.originalEvent) e = e.originalEvent;
     if (isTouchEvent && e.type === 'mousemove') return;
-    if (e.preventedByNestedSwiper) return;
+    if (e.preventedByNestedCGGSwiper) return;
     if (s.params.onlyExternal) {
         isMoved = true;
         s.allowClick = false;
@@ -1220,18 +1220,18 @@ s.onTouchMove = function (e) {
     s.swipeDirection = diff > 0 ? 'prev' : 'next';
     currentTranslate = diff + startTranslate;
 
-    var disableParentSwiper = true;
+    var disableParentCGGSwiper = true;
     if ((diff > 0 && currentTranslate > s.minTranslate())) {
-        disableParentSwiper = false;
+        disableParentCGGSwiper = false;
         if (s.params.resistance) currentTranslate = s.minTranslate() - 1 + Math.pow(-s.minTranslate() + startTranslate + diff, s.params.resistanceRatio);
     }
     else if (diff < 0 && currentTranslate < s.maxTranslate()) {
-        disableParentSwiper = false;
+        disableParentCGGSwiper = false;
         if (s.params.resistance) currentTranslate = s.maxTranslate() + 1 - Math.pow(s.maxTranslate() - startTranslate - diff, s.params.resistanceRatio);
     }
 
-    if (disableParentSwiper) {
-        e.preventedByNestedSwiper = true;
+    if (disableParentCGGSwiper) {
+        e.preventedByNestedCGGSwiper = true;
     }
 
     // Directions locks
@@ -1829,7 +1829,7 @@ s.createLoop = function () {
         var slide = $(this);
         if (index < s.loopedSlides) appendSlides.push(el);
         if (index < slides.length && index >= slides.length - s.loopedSlides) prependSlides.push(el);
-        slide.attr('data-swiper-slide-index', index);
+        slide.attr('data-cggswiper-slide-index', index);
     });
     for (i = 0; i < appendSlides.length; i++) {
         s.wrapper.append($(appendSlides[i].cloneNode(true)).addClass(s.params.slideDuplicateClass));
@@ -1840,7 +1840,7 @@ s.createLoop = function () {
 };
 s.destroyLoop = function () {
     s.wrapper.children('.' + s.params.slideClass + '.' + s.params.slideDuplicateClass).remove();
-    s.slides.removeAttr('data-swiper-slide-index');
+    s.slides.removeAttr('data-cggswiper-slide-index');
 };
 s.fixLoop = function () {
     var newIndex;

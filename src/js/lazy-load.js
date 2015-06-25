@@ -9,15 +9,15 @@ s.lazy = {
         if (s.slides.length === 0) return;
         
         var slide = s.slides.eq(index);
-        var img = slide.find('.swiper-lazy:not(.swiper-lazy-loaded):not(.swiper-lazy-loading)');
-        if (slide.hasClass('swiper-lazy') && !slide.hasClass('swiper-lazy-loaded') && !slide.hasClass('swiper-lazy-loading')) {
+        var img = slide.find('.cgg-swiper-lazy:not(.cgg-swiper-lazy-loaded):not(.cgg-swiper-lazy-loading)');
+        if (slide.hasClass('cgg-swiper-lazy') && !slide.hasClass('cgg-swiper-lazy-loaded') && !slide.hasClass('cgg-swiper-lazy-loading')) {
             img.add(slide[0]);
         }
         if (img.length === 0) return;
 
         img.each(function () {
             var _img = $(this);
-            _img.addClass('swiper-lazy-loading');
+            _img.addClass('cgg-swiper-lazy-loading');
             var background = _img.attr('data-background');
             var src = _img.attr('data-src');
             s.loadImage(_img[0], (src || background), false, function () {
@@ -30,16 +30,16 @@ s.lazy = {
                     _img.removeAttr('data-src');
                 }
                     
-                _img.addClass('swiper-lazy-loaded').removeClass('swiper-lazy-loading');
-                slide.find('.swiper-lazy-preloader, .preloader').remove();
+                _img.addClass('cgg-swiper-lazy-loaded').removeClass('cgg-swiper-lazy-loading');
+                slide.find('.cgg-swiper-lazy-preloader, .preloader').remove();
                 if (s.params.loop && loadInDuplicate) {
-                    var slideOriginalIndex = slide.attr('data-swiper-slide-index');
+                    var slideOriginalIndex = slide.attr('data-cggswiper-slide-index');
                     if (slide.hasClass(s.params.slideDuplicateClass)) {
-                        var originalSlide = s.wrapper.children('[data-swiper-slide-index="' + slideOriginalIndex + '"]:not(.' + s.params.slideDuplicateClass + ')');
+                        var originalSlide = s.wrapper.children('[data-cggswiper-slide-index="' + slideOriginalIndex + '"]:not(.' + s.params.slideDuplicateClass + ')');
                         s.lazy.loadImageInSlide(originalSlide.index(), false);
                     }
                     else {
-                        var duplicatedSlide = s.wrapper.children('.' + s.params.slideDuplicateClass + '[data-swiper-slide-index="' + slideOriginalIndex + '"]');
+                        var duplicatedSlide = s.wrapper.children('.' + s.params.slideDuplicateClass + '[data-cggswiper-slide-index="' + slideOriginalIndex + '"]');
                         s.lazy.loadImageInSlide(duplicatedSlide.index(), false);
                     }
                 }

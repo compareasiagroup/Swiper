@@ -6,7 +6,7 @@ s.effects = {
         setTranslate: function () {
             for (var i = 0; i < s.slides.length; i++) {
                 var slide = s.slides.eq(i);
-                var offset = slide[0].swiperSlideOffset;
+                var offset = slide[0].cggswiperSlideOffset;
                 var tx = -offset;
                 if (!s.params.virtualTranslate) tx = tx - s.translate;
                 var ty = 0;
@@ -48,17 +48,17 @@ s.effects = {
             var wrapperRotate = 0, cubeShadow;
             if (s.params.cube.shadow) {
                 if (isH()) {
-                    cubeShadow = s.wrapper.find('.swiper-cube-shadow');
+                    cubeShadow = s.wrapper.find('.cgg-swiper-cube-shadow');
                     if (cubeShadow.length === 0) {
-                        cubeShadow = $('<div class="swiper-cube-shadow"></div>');
+                        cubeShadow = $('<div class="cgg-swiper-cube-shadow"></div>');
                         s.wrapper.append(cubeShadow);
                     }
                     cubeShadow.css({height: s.width + 'px'});
                 }
                 else {
-                    cubeShadow = s.container.find('.swiper-cube-shadow');
+                    cubeShadow = s.container.find('.cgg-swiper-cube-shadow');
                     if (cubeShadow.length === 0) {
-                        cubeShadow = $('<div class="swiper-cube-shadow"></div>');
+                        cubeShadow = $('<div class="cgg-swiper-cube-shadow"></div>');
                         s.container.append(cubeShadow);
                     }
                 }
@@ -106,14 +106,14 @@ s.effects = {
                 slide.transform(transform);
                 if (s.params.cube.slideShadows) {
                     //Set shadows
-                    var shadowBefore = isH() ? slide.find('.swiper-slide-shadow-left') : slide.find('.swiper-slide-shadow-top');
-                    var shadowAfter = isH() ? slide.find('.swiper-slide-shadow-right') : slide.find('.swiper-slide-shadow-bottom');
+                    var shadowBefore = isH() ? slide.find('.cgg-swiper-slide-shadow-left') : slide.find('.cgg-swiper-slide-shadow-top');
+                    var shadowAfter = isH() ? slide.find('.cgg-swiper-slide-shadow-right') : slide.find('.cgg-swiper-slide-shadow-bottom');
                     if (shadowBefore.length === 0) {
-                        shadowBefore = $('<div class="swiper-slide-shadow-' + (isH() ? 'left' : 'top') + '"></div>');
+                        shadowBefore = $('<div class="cgg-swiper-slide-shadow-' + (isH() ? 'left' : 'top') + '"></div>');
                         slide.append(shadowBefore);
                     }
                     if (shadowAfter.length === 0) {
-                        shadowAfter = $('<div class="swiper-slide-shadow-' + (isH() ? 'right' : 'bottom') + '"></div>');
+                        shadowAfter = $('<div class="cgg-swiper-slide-shadow-' + (isH() ? 'right' : 'bottom') + '"></div>');
                         slide.append(shadowAfter);
                     }
                     var shadowOpacity = slide[0].progress;
@@ -145,9 +145,9 @@ s.effects = {
             s.wrapper.transform('translate3d(0px,0,' + zFactor + 'px) rotateX(' + (isH() ? 0 : wrapperRotate) + 'deg) rotateY(' + (isH() ? -wrapperRotate : 0) + 'deg)');
         },
         setTransition: function (duration) {
-            s.slides.transition(duration).find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left').transition(duration);
+            s.slides.transition(duration).find('.cgg-swiper-slide-shadow-top, .cgg-swiper-slide-shadow-right, .cgg-swiper-slide-shadow-bottom, .cgg-swiper-slide-shadow-left').transition(duration);
             if (s.params.cube.shadow && !isH()) {
-                s.container.find('.swiper-cube-shadow').transition(duration);
+                s.container.find('.cgg-swiper-cube-shadow').transition(duration);
             }
         }
     },
@@ -161,7 +161,7 @@ s.effects = {
             for (var i = 0, length = s.slides.length; i < length; i++) {
                 var slide = s.slides.eq(i);
                 var slideSize = s.slidesSizesGrid[i];
-                var slideOffset = slide[0].swiperSlideOffset;
+                var slideOffset = slide[0].cggswiperSlideOffset;
                 var offsetMultiplier = (center - slideOffset - slideSize / 2) / slideSize * s.params.coverflow.modifier;
 
                 var rotateY = isH() ? rotate * offsetMultiplier : 0;
@@ -185,14 +185,14 @@ s.effects = {
                 slide[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
                 if (s.params.coverflow.slideShadows) {
                     //Set shadows
-                    var shadowBefore = isH() ? slide.find('.swiper-slide-shadow-left') : slide.find('.swiper-slide-shadow-top');
-                    var shadowAfter = isH() ? slide.find('.swiper-slide-shadow-right') : slide.find('.swiper-slide-shadow-bottom');
+                    var shadowBefore = isH() ? slide.find('.cgg-swiper-slide-shadow-left') : slide.find('.cgg-swiper-slide-shadow-top');
+                    var shadowAfter = isH() ? slide.find('.cgg-swiper-slide-shadow-right') : slide.find('.cgg-swiper-slide-shadow-bottom');
                     if (shadowBefore.length === 0) {
-                        shadowBefore = $('<div class="swiper-slide-shadow-' + (isH() ? 'left' : 'top') + '"></div>');
+                        shadowBefore = $('<div class="cgg-swiper-slide-shadow-' + (isH() ? 'left' : 'top') + '"></div>');
                         slide.append(shadowBefore);
                     }
                     if (shadowAfter.length === 0) {
-                        shadowAfter = $('<div class="swiper-slide-shadow-' + (isH() ? 'right' : 'bottom') + '"></div>');
+                        shadowAfter = $('<div class="cgg-swiper-slide-shadow-' + (isH() ? 'right' : 'bottom') + '"></div>');
                         slide.append(shadowAfter);
                     }
                     if (shadowBefore.length) shadowBefore[0].style.opacity = offsetMultiplier > 0 ? offsetMultiplier : 0;
@@ -207,7 +207,7 @@ s.effects = {
             }
         },
         setTransition: function (duration) {
-            s.slides.transition(duration).find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left').transition(duration);
+            s.slides.transition(duration).find('.cgg-swiper-slide-shadow-top, .cgg-swiper-slide-shadow-right, .cgg-swiper-slide-shadow-bottom, .cgg-swiper-slide-shadow-left').transition(duration);
         }
     }
 };

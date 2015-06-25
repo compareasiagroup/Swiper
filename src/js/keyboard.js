@@ -19,8 +19,8 @@ function handleKeyboard(e) {
     }
     if (kc === 37 || kc === 39 || kc === 38 || kc === 40) {
         var inView = false;
-        //Check that swiper should be inside of visible area of window
-        if (s.container.parents('.swiper-slide').length > 0 && s.container.parents('.swiper-slide-active').length === 0) {
+        //Check that cggswiper should be inside of visible area of window
+        if (s.container.parents('.cgg-swiper-slide').length > 0 && s.container.parents('.cgg-swiper-slide-active').length === 0) {
             return;
         }
         var windowScroll = {
@@ -29,16 +29,16 @@ function handleKeyboard(e) {
         };
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
-        var swiperOffset = s.container.offset();
-        if (s.rtl) swiperOffset.left = swiperOffset.left - s.container[0].scrollLeft;
-        var swiperCoord = [
-            [swiperOffset.left, swiperOffset.top],
-            [swiperOffset.left + s.width, swiperOffset.top],
-            [swiperOffset.left, swiperOffset.top + s.height],
-            [swiperOffset.left + s.width, swiperOffset.top + s.height]
+        var cggswiperOffset = s.container.offset();
+        if (s.rtl) cggswiperOffset.left = cggswiperOffset.left - s.container[0].scrollLeft;
+        var cggswiperCoord = [
+            [cggswiperOffset.left, cggswiperOffset.top],
+            [cggswiperOffset.left + s.width, cggswiperOffset.top],
+            [cggswiperOffset.left, cggswiperOffset.top + s.height],
+            [cggswiperOffset.left + s.width, cggswiperOffset.top + s.height]
         ];
-        for (var i = 0; i < swiperCoord.length; i++) {
-            var point = swiperCoord[i];
+        for (var i = 0; i < cggswiperCoord.length; i++) {
+            var point = cggswiperCoord[i];
             if (
                 point[0] >= windowScroll.left && point[0] <= windowScroll.left + windowWidth &&
                 point[1] >= windowScroll.top && point[1] <= windowScroll.top + windowHeight
