@@ -1,12 +1,12 @@
 {
-  "name": "swiper",
+  "name": "cggswiper",
   "version": "3.0.8",
   "description": "Most modern mobile touch slider and framework with hardware accelerated transitions",
   "main": "dist/js/swiper.js",
   "files": ["dist", "src", "*.json", "*.js"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nolimits4web/Swiper.git"
+    "url": "https://github.com/compareasiagroup/Swiper.git"
   },
   "keywords": ["swiper", "swipe", "slider", "touch", "ios", "mobile", "cordova", "phonegap", "app", "framework", "carousel", "gallery"],
   "author": "Vladimir Kharlampidi",
@@ -14,7 +14,7 @@
     "MIT"
   ],
   "bugs": {
-    "url": "https://github.com/nolimits4web/Swiper/issues"
+    "url": "https://github.com/compareasiagroup/Swiper/issues"
   },
   "homepage": "http://www.idangero.us/swiper/",
   "engines": {
