@@ -191,7 +191,7 @@ s.classNames = [];
   ===========================*/
 var $;
 if (typeof Dom7 === 'undefined') {
-    $ = window.Dom7 || window.Zepto || window.jQuery;
+    $ = window.Dom7 || window.Zepto || window.CGGQuery;
 }
 else {
     $ = Dom7;
@@ -1547,7 +1547,7 @@ s.slideTo = function (slideIndex, speed, runCallbacks, internal) {
     if (s.snapIndex >= s.snapGrid.length) s.snapIndex = s.snapGrid.length - 1;
 
     var translate = - s.snapGrid[s.snapIndex];
-    
+
     // Directions locks
     if (!s.params.allowSwipeToNext && translate < s.translate && translate < s.minTranslate()) {
         return false;
