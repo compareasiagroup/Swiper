@@ -1,7 +1,7 @@
 /*===========================
 Add .cggswiper plugin from Dom libraries
 ===========================*/
-var cggswiperDomPlugins = ['jQuery', 'Zepto', 'Dom7'];
+var cggswiperDomPlugins = ['CGGQuery', 'Zepto', 'Dom7'];
 function addLibraryPlugin(lib) {
     lib.fn.cggswiper = function (params) {
         var firstInstance;
@@ -20,7 +20,7 @@ for (var i = 0; i < cggswiperDomPlugins.length; i++) {
 // Required DOM Plugins
 var domLib;
 if (typeof Dom7 === 'undefined') {
-    domLib = window.Dom7 || window.Zepto || window.jQuery;
+    domLib = window.Dom7 || window.Zepto || window.CGGQuery;
 }
 else {
     domLib = Dom7;
@@ -68,4 +68,4 @@ if (domLib) {
         };
     }
 }
-    
+
