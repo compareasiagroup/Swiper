@@ -10,7 +10,7 @@
  * 
  * Licensed under MIT
  * 
- * Released on: June 26, 2015
+ * Released on: August 24, 2015
  */
 (function () {
     'use strict';
@@ -213,7 +213,7 @@
           ===========================*/
         var $;
         if (typeof Dom7 === 'undefined') {
-            $ = window.Dom7 || window.Zepto || window.jQuery;
+            $ = window.Dom7 || window.Zepto || window.CGGQuery;
         }
         else {
             $ = Dom7;
@@ -1569,7 +1569,7 @@
             if (s.snapIndex >= s.snapGrid.length) s.snapIndex = s.snapGrid.length - 1;
         
             var translate = - s.snapGrid[s.snapIndex];
-            
+        
             // Directions locks
             if (!s.params.allowSwipeToNext && translate < s.translate && translate < s.minTranslate()) {
                 return false;
@@ -3083,7 +3083,7 @@
     /*===========================
     Add .cggswiper plugin from Dom libraries
     ===========================*/
-    var cggswiperDomPlugins = ['jQuery', 'Zepto', 'Dom7'];
+    var cggswiperDomPlugins = ['CGGQuery', 'Zepto', 'Dom7'];
     function addLibraryPlugin(lib) {
         lib.fn.cggswiper = function (params) {
             var firstInstance;
@@ -3102,7 +3102,7 @@
     // Required DOM Plugins
     var domLib;
     if (typeof Dom7 === 'undefined') {
-        domLib = window.Dom7 || window.Zepto || window.jQuery;
+        domLib = window.Dom7 || window.Zepto || window.CGGQuery;
     }
     else {
         domLib = Dom7;
@@ -3150,7 +3150,7 @@
             };
         }
     }
-        
+    
     
 
     window.CGGSwiper = CGGSwiper;
